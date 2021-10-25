@@ -1,3 +1,10 @@
+![apvanyushin_bash](https://user-images.githubusercontent.com/92942650/138729125-78fab1aa-1126-4c6f-935a-e4afd7dcf71f.PNG)
+![apvanyushin_jsonnet](https://user-images.githubusercontent.com/92942650/138729130-f083272b-80d3-49e0-8abd-5730e425b86b.PNG)
+![apvanyushin_Markdown](https://user-images.githubusercontent.com/92942650/138729133-a8085cbb-997a-46f3-89f7-94608d41a9dd.PNG)
+![apvanyushin_Terraform](https://user-images.githubusercontent.com/92942650/138729135-3f5e1547-549a-42b1-a4d5-a939820ca157.PNG)
+![apvanyushin_yaml](https://user-images.githubusercontent.com/92942650/138729140-a772503c-7e4e-443e-a114-7d5f997dd622.PNG)
+
+
 # Netology Devops. Homework 1.2
 
 Итак, что мы имеем:
