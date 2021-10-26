@@ -19,10 +19,10 @@ override.tf.json
 *_override.tf.json
 
 # Исключение из вышеуказанного правила
-# !example_override.tf
+ !example_override.tf
 
 # Файлы, имена которых содержат символы "tfplan" (например example_tfplan_)
-# example: *tfplan*
+ example: *tfplan*
 
 # Игнорирование конкретных файлов
 .terraformrc
