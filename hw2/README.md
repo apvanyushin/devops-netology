@@ -1,4 +1,4 @@
-#В gitignore terraform мы игнорируем следующие файлы:
+# В gitignore terraform мы игнорируем следующие файлы:
 # Скрытая дирректория .terraform
 **/.terraform/*
 
