@@ -58,11 +58,20 @@
         Process: 640 ExecStart=/usr/local/bin/node_exporter (code=killed, signal=TERM)
        Main PID: 640 (code=killed, signal=TERM)
 
-##### Cron
-    Создание таблицы для node_explorer:
-    vagrant@vagrant:~$ sudo crontab -u node_exporter -e
-    Запуск файла каждое воскресенье (пока не придумал действительно полезный пример для использования cron и node_exporter)
-    0 17 * * sun /usr/local/bin/node_exporter
+##### Доработка. Добавлена возможность добавлять опции к запускаемому процессу через внешний файл. 
+    [Unit]
+    Description=Prometheus Node Exporter
+    Wants=network-online.target
+    After=network-online.target
+    
+    [Service]
+    User=node_exporter
+    Group=node_exporter
+    Type=simple
+    ExecStart=/usr/local/bin/node_exporter -f $EXTRA_OPTS
+    
+    [Install]
+    WantedBy=multi-user.target
 
 
 ##### 2. Ознакомьтесь с опциями node_exporter и выводом `/metrics` по-умолчанию. Приведите несколько опций, которые вы бы выбрали для базового мониторинга хоста по CPU, памяти, диску и сети.
