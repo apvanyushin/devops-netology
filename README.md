@@ -1,1 +1,1 @@
-# devops-netology
+# Netology DevOps
