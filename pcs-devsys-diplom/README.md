@@ -92,8 +92,8 @@ Step 4: Request certificate
     vault write -format=json pki_int/issue/example-dot-com common_name="test.example.com" ttl="750h" > test_cert.example.com.json_data
 
 
-###UPD
-###Так как есть задача на выпуск сертификата с помощью скрипта, то запуск vault в dev режиме в дальнейшем не имеет смысла. Ниже выполненные команды для запуска vault в production mode:
+### UPD
+### Так как есть задача на выпуск сертификата с помощью скрипта, то запуск vault в dev режиме в дальнейшем не имеет смысла. Ниже выполненные команды для запуска vault в production mode:
         
     sudo systemctl enable vault.service
     sudo systemctl start vault.service
