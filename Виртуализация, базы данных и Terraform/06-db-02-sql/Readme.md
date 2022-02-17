@@ -150,7 +150,7 @@
     - запросы 
     - результаты их выполнения.
 
-
+...
     postgres=# insert into orders VALUES (1, 'Шоколад', 10), (2, 'Принтер', 3000), (3, 'Книга', 500), (4, 'Монитор', 7000), (5, 'Гитара', 4000);
     INSERT 0 5
     postgres=# insert into clients VALUES (1, 'Иванов Иван Иванович', 'USA'), (2, 'Петров Петр Петрович', 'Canada'), (3, 'Иоганн Себастьян Бах', 'Japan'), (4, 'Ронни Джеймс Дио', 'Russia'), (5, 'Ritchie Blackmore', 'Russia');
@@ -173,7 +173,7 @@
       3 | Иоганн Себастьян Бах | Japan  |
       4 | Ронни Джеймс Дио     | Russia |
       5 | Ritchie Blackmore    | Russia |
-    (5 rows)
+    (5 rows)...
 
 ###### вычислите количество записей для каждой таблицы 
     postgres=# select count (*) from orders;
