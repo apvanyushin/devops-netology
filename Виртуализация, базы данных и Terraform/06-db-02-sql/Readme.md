@@ -84,7 +84,7 @@
     postgres=# CREATE TABLE clients (id SERIAL PRiMARY KEY, фамилия VARCHAR, страна VARCHAR, заказ INT REFERENCES orders);
     CREATE TABLE
 
-    CREATE UNIQUE INDEX country ON clients (страна);
+    CREATE INDEX country ON clients (страна);
 
 ###### предоставьте привилегии на все операции пользователю test-admin-user на таблицы БД test_db
     GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO "test-admin-user";
