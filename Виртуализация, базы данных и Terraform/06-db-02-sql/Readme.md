@@ -13,11 +13,12 @@
     docker volume create volume1
     docker volume create volume2
 
-    docker run --name postgreSQL12 -p 5432:5432 -ti -e POSTGRES_PASSWORD=passw -v volume1:/var/lib/postgresql/data -v volume2:/var/lib/postgresql/backup postgres:12
+    docker run --name postgreSQL12 -d -p 5432:5432 -ti -e POSTGRES_PASSWORD=passw -v volume1:/var/lib/postgresql/data -v volume2:/var/lib/postgresql/backup postgres:12
     
     docker exec -it c864236310a1 bash
     root@c864236310a1:/# psql --version
     psql (PostgreSQL) 12.10 (Debian 12.10-1.pgdg110+1)
+    psql -U postgres
 
     postgres=# \l
                                  List of databases
@@ -238,3 +239,127 @@
     (2 rows)
 
 Вывести рассчитанную стоимость запуска и общую стоимость каждого узла плана, а также рассчитанное число строк и ширину каждой строки.
+
+
+## Задача 6
+Создайте бэкап БД test_db и поместите его в volume, предназначенный для бэкапов (см. Задачу 1).
+
+Остановите контейнер с PostgreSQL (но не удаляйте volumes).
+
+Поднимите новый пустой контейнер с PostgreSQL.
+
+Восстановите БД test_db в новом контейнере.
+
+Приведите список операций, который вы применяли для бэкапа данных и восстановления.
+
+
+Ответ:
+    
+    docker start c864236310a1
+    docker exec -it c864236310a1 bash
+    root@c864236310a1:/# cd /var/lib/postgresql/backup
+    root@c864236310a1:/var/lib/postgresql/backup# pg_dump -U postgres test_db > backup.dump
+    root@c864236310a1:/var/lib/postgresql/backup# ls
+    backup.dump
+    root@c864236310a1:/var/lib/postgresql/backup# exit
+    exit
+    vagrant@server1:~/postgres$ docker stop c864236310a1
+    c864236310a1
+
+    docker run --name postgresql_backup -d -p 5432:5432 -ti -e POSTGRES_PASSWORD=passw -v volume2:/var/lib/postgresql/backup postgres:12
+    root@4d46feb299a3:/# cd /var/lib/postgresql/backup
+
+Команда для восстановления "psql -U postgres test_db < database-backup.dump", но в документации сказано что эта команда не создает БД, ее нужно создать предварительно вручную.
+
+    createdb -U postgres -T template0 test_db
+
+    root@4d46feb299a3:/var/lib/postgresql/backup# psql -U postgres test_db < database-backup.dump
+    SET
+    SET
+    SET
+    SET
+    SET
+     set_config
+    ------------
+    
+    (1 row)
+    
+    SET
+    SET
+    SET
+    SET
+    SET
+    SET
+    CREATE TABLE
+    ALTER TABLE
+    CREATE SEQUENCE
+    ALTER TABLE
+    ALTER SEQUENCE
+    CREATE TABLE
+    ALTER TABLE
+    CREATE SEQUENCE
+    ALTER TABLE
+    ALTER SEQUENCE
+    ALTER TABLE
+    ALTER TABLE
+    COPY 5
+    COPY 5
+     setval
+    --------
+          1
+    (1 row)
+    
+     setval
+    --------
+          1
+    (1 row)
+    
+    ALTER TABLE
+    ALTER TABLE
+    CREATE INDEX
+    ALTER TABLE
+    ERROR:  role "test-admin-user" does not exist
+    ERROR:  role "test-simple-user" does not exist
+    ERROR:  role "test-admin-user" does not exist
+    ERROR:  role "test-simple-user" does not exist
+
+При развертывании БД из бекапа возникли ошибки, судя по документации это нормально. 
+Перед восстановлением SQL-дампа все пользователи, которые владели объектами или имели права на объекты в выгруженной базе данных, должны уже существовать. Если их нет, при восстановлении будут ошибки пересоздания объектов с изначальными владельцами и/или правами.
+При этом все данные и таблицы в БД существуют, но это неприемлемый результат.
+Поэтому я удалил восстановленную БД, внес правки в файл database-backup.dump, добавив для строки для создания нужных пользователей.
+
+CREATE USER "test-admin-user";
+
+CREATE USER "test-simple-user";
+
+После чего восстановление БД из бекапа происходит без ошибок (не буду повторно спамить весь вывод при восстановлении БД, а покажу только строки которые раньше были с ошибками):
+    
+     setval
+    --------
+          1
+    (1 row)
+    
+    ALTER TABLE
+    ALTER TABLE
+    CREATE INDEX
+    ALTER TABLE
+    GRANT
+    GRANT
+    GRANT
+    GRANT
+
+    root@4d46feb299a3:/var/lib/postgresql/backup# psql -U postgres -d test_db
+    psql (12.10 (Debian 12.10-1.pgdg110+1))
+    Type "help" for help.
+    
+    test_db=# SELECT * FROM clients;
+     id |       фамилия        | страна | заказ
+    ----+----------------------+--------+-------
+      4 | Ронни Джеймс Дио     | Russia |
+      5 | Ritchie Blackmore    | Russia |
+      1 | Иванов Иван Иванович | USA    |     3
+      2 | Петров Петр Петрович | Canada |     4
+      3 | Иоганн Себастьян Бах | Japan  |     5
+    (5 rows)
+    
+            
