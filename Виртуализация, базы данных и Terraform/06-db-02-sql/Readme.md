@@ -267,8 +267,9 @@
     c864236310a1
 
     docker run --name postgresql_backup -d -p 5432:5432 -ti -e POSTGRES_PASSWORD=passw -v volume2:/var/lib/postgresql/backup postgres:12
+    docker exec -it 4d46feb299a3 bash
     root@4d46feb299a3:/# cd /var/lib/postgresql/backup
-
+    
 Команда для восстановления "psql -U postgres test_db < database-backup.dump", но в документации сказано что эта команда не создает БД, ее нужно создать предварительно вручную.
 
     createdb -U postgres -T template0 test_db
