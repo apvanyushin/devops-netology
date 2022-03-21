@@ -185,6 +185,13 @@
     
     pg_dump -U postgres -d test_database >test_database_dump.sql
 
-Можно добавить индекс UNIQEU для уникальности данных:
 
-    CREATE UNIQUE INDEX title_un ON public.orders (title);
+Доработка файла для уникальности путём добавления Unique constraints (Unique constraints ensure that the data contained in a column, or a group of columns, is unique among all the rows in the table.)
+
+CREATE TABLE public.orders (  
+	    id integer NOT NULL,  
+	    title character varying(80) NOT NULL,  
+	    price integer DEFAULT 0,  
+	    UNIQUE (title)  
+	); 
+
