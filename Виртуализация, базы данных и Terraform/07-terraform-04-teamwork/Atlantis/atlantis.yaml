@@ -1,0 +1,22 @@
+version: 3
+projects:
+- dir: .
+  workspace: stage
+  autoplan:
+    when_modified: ["*.tf", "../modules/**/*.tf"]
+    enabled: true
+    workflow: default
+- dir: .
+  workspace: prod
+  autoplan:
+    when_modified: ["*.tf", "../modules/**/*.tf"]
+    enabled: true
+    workflow: default
+workflows:
+  default:
+    plan:
+      steps:
+      - plan:
+    apply:
+      steps:
+      - apply
