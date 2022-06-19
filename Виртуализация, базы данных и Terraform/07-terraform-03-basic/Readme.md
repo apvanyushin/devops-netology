@@ -71,14 +71,14 @@ dynamodb.
 использовались разные `instance_type`.
 4. Добавим `count`. Для `stage` должен создаться один экземпляр `ec2`, а для `prod` два. 
 
-      `resource "yandex_compute_instance" "vm-1" {`
-         count = "${terraform.workspace == "prod" ? 2 : 1}"
-         name = "node0${count.index+1}-${terraform.workspace}"
-         `resources {`
-            `cores         = "${terraform.workspace == "prod" ? 4 : 2}"`
-            memory        = 4
-         }
-         ...
+      `resource "yandex_compute_instance" "vm-1" {`\
+         `count = "${terraform.workspace == "prod" ? 2 : 1}"`\
+         `name = "node0${count.index+1}-${terraform.workspace}"`\
+         `resources {`\
+            `cores         = "${terraform.workspace == "prod" ? 4 : 2}"`\
+            `memory        = 4`\
+         `}`\
+         `...`\
       `}`
     
 
