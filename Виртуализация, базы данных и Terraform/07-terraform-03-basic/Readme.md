@@ -139,10 +139,10 @@ dynamodb.
 * Вывод команды `terraform workspace list`.
 
 
-    root@vagrant:/home/vagrant/terraform/tf03# terraform workspace list
-    default
-    * prod
-    stage
+    root@vagrant:/home/vagrant/terraform/tf03# terraform workspace list\
+    default\
+    * prod\
+    stage\
 * Вывод команды `terraform plan` для воркспейса `prod`.  
 
    
