@@ -110,6 +110,7 @@ dynamodb.
 
 И в файле main.tf добавил еще один instance:
 
+
      `resource "yandex_compute_instance" "fe" {`
         `for_each = var.hosts[terraform.workspace]`
         `name = each.value.name`
