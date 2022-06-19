@@ -225,7 +225,7 @@ dynamodb.
         }
     }
 
-    # yandex_compute_instance.fe["vm2"] will be created
+      yandex_compute_instance.fe["vm2"] will be created
     + resource "yandex_compute_instance" "fe" {
       + created_at                = (known after apply)
       + folder_id                 = (known after apply)
@@ -291,7 +291,7 @@ dynamodb.
         }
     }
 
-    # yandex_compute_instance.vm-1[0] will be created
+     yandex_compute_instance.vm-1[0] will be created
     + resource "yandex_compute_instance" "vm-1" {
       + created_at                = (known after apply)
       + folder_id                 = (known after apply)
@@ -357,7 +357,7 @@ dynamodb.
         }
     }
 
-    # yandex_compute_instance.vm-1[1] will be created
+     yandex_compute_instance.vm-1[1] will be created
     + resource "yandex_compute_instance" "vm-1" {
       + created_at                = (known after apply)
       + folder_id                 = (known after apply)
@@ -423,7 +423,7 @@ dynamodb.
         }
     }
 
-    # yandex_vpc_network.network-1 will be created
+     yandex_vpc_network.network-1 will be created
     + resource "yandex_vpc_network" "network-1" {
       + created_at                = (known after apply)
       + default_security_group_id = (known after apply)
@@ -434,7 +434,7 @@ dynamodb.
       + subnet_ids                = (known after apply)
     }
 
-    # yandex_vpc_subnet.subnet-1 will be created
+     yandex_vpc_subnet.subnet-1 will be created
     + resource "yandex_vpc_subnet" "subnet-1" {
       + created_at     = (known after apply)
       + folder_id      = (known after apply)
