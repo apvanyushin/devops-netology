@@ -223,10 +223,10 @@ dynamodb.
       + scheduling_policy {
           + preemptible = (known after apply)
         }
-    }
+      }
 
       yandex_compute_instance.fe["vm2"] will be created
-    + resource "yandex_compute_instance" "fe" {
+      + resource "yandex_compute_instance" "fe" {
       + created_at                = (known after apply)
       + folder_id                 = (known after apply)
       + fqdn                      = (known after apply)
@@ -289,10 +289,10 @@ dynamodb.
       + scheduling_policy {
           + preemptible = (known after apply)
         }
-    }
+      }
 
-     yandex_compute_instance.vm-1[0] will be created
-    + resource "yandex_compute_instance" "vm-1" {
+      yandex_compute_instance.vm-1[0] will be created
+      + resource "yandex_compute_instance" "vm-1" {
       + created_at                = (known after apply)
       + folder_id                 = (known after apply)
       + fqdn                      = (known after apply)
@@ -355,10 +355,10 @@ dynamodb.
       + scheduling_policy {
           + preemptible = (known after apply)
         }
-    }
+      }
 
-     yandex_compute_instance.vm-1[1] will be created
-    + resource "yandex_compute_instance" "vm-1" {
+      yandex_compute_instance.vm-1[1] will be created
+      + resource "yandex_compute_instance" "vm-1" {
       + created_at                = (known after apply)
       + folder_id                 = (known after apply)
       + fqdn                      = (known after apply)
@@ -421,10 +421,10 @@ dynamodb.
       + scheduling_policy {
           + preemptible = (known after apply)
         }
-    }
+      }
 
-     yandex_vpc_network.network-1 will be created
-    + resource "yandex_vpc_network" "network-1" {
+      yandex_vpc_network.network-1 will be created
+      + resource "yandex_vpc_network" "network-1" {
       + created_at                = (known after apply)
       + default_security_group_id = (known after apply)
       + folder_id                 = (known after apply)
@@ -432,10 +432,10 @@ dynamodb.
       + labels                    = (known after apply)
       + name                      = "network1"
       + subnet_ids                = (known after apply)
-    }
+      }
 
-     yandex_vpc_subnet.subnet-1 will be created
-    + resource "yandex_vpc_subnet" "subnet-1" {
+      yandex_vpc_subnet.subnet-1 will be created
+      + resource "yandex_vpc_subnet" "subnet-1" {
       + created_at     = (known after apply)
       + folder_id      = (known after apply)
       + id             = (known after apply)
@@ -447,11 +447,11 @@ dynamodb.
         ]
       + v6_cidr_blocks = (known after apply)
       + zone           = "ru-central1-a"
-    }
+      }
 
-    Plan: 6 to add, 0 to change, 0 to destroy.
+      Plan: 6 to add, 0 to change, 0 to destroy.
    
-    ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+      ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 В результате выполнения terraform apply в YC создается 4 VM (2 count и 2 foreach)
 ![img_1.png](img_1.png)
