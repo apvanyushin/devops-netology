@@ -18,9 +18,9 @@ resource "yandex_compute_instance" "vm-1" {
     subnet_id = yandex_vpc_subnet.subnet-1.id
     nat       = true
   }
-  metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
-  }
+#  metadata = {
+#    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+#  }
 }
 data "yandex_compute_image" "my_image"{
   family = "ubuntu-2004-lts"
