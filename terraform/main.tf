@@ -1,7 +1,7 @@
 provider "yandex" {
   cloud_id  = var.yandex_cloud_id
   folder_id = var.yandex_folder_id
-  zone      = ru-central1-a
+  zone      = "ru-central1-a"
 }
 resource "yandex_compute_instance" "vm-1" {
   name = "tf"
