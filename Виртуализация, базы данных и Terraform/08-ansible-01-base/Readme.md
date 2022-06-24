@@ -132,40 +132,40 @@ some_fact = 12, это видно в таске "Print fact". 12 потому ч
 8. При помощи `ansible-vault` зашифруйте факты в `group_vars/deb` и `group_vars/el` с паролем `netology`.
 
 
-    root@vagrant:/home/vagrant/ansible/ansible# ansible-vault encrypt group_vars/deb/examp.yml
-    root@vagrant:/home/vagrant/ansible/ansible# ansible-vault encrypt group_vars/el/examp.yml
+    `root@vagrant:/home/vagrant/ansible/ansible# ansible-vault encrypt group_vars/deb/examp.yml`
+    `root@vagrant:/home/vagrant/ansible/ansible# ansible-vault encrypt group_vars/el/examp.yml`
 
 9. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь в работоспособности.
 
 
-    root@vagrant:/home/vagrant/ansible/ansible# ansible-playbook site.yml -i inventory/prod.yml --ask-vault-pass
-    Vault password:
+    `root@vagrant:/home/vagrant/ansible/ansible# ansible-playbook site.yml -i inventory/prod.yml --ask-vault-pass`
+        Vault password:
 
-    PLAY[Print os facts] ******************************************************************************************************************************************
-    
-    TASK [Gathering Facts] *****************************************************************************************************************************************
-    ok: [ubuntu]
-    ok: [centos7]
-    
-    TASK [Print OS] ************************************************************************************************************************************************
-    ok: [centos7] => {
-        "msg": "CentOS"
-    }
-    ok: [ubuntu] => {
-        "msg": "Ubuntu"
-    }
-    
-    TASK [Print fact] **********************************************************************************************************************************************
-    ok: [centos7] => {
-        "msg": "el default fact"
-    }
-    ok: [ubuntu] => {
-        "msg": "deb default fact"
-    }
-    
-    PLAY RECAP *****************************************************************************************************************************************************
-    centos7                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-    ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+        PLAY[Print os facts] ******************************************************************************************************************************************
+
+        TASK [Gathering Facts] *****************************************************************************************************************************************
+        ok: [ubuntu]
+        ok: [centos7]
+
+        TASK [Print OS] ************************************************************************************************************************************************
+        ok: [centos7] => {
+            "msg": "CentOS"
+        }
+        ok: [ubuntu] => {
+            "msg": "Ubuntu"
+        }
+
+        TASK [Print fact] **********************************************************************************************************************************************
+        ok: [centos7] => {
+            "msg": "el default fact"
+        }
+        ok: [ubuntu] => {
+            "msg": "deb default fact"
+        }
+
+        PLAY RECAP *****************************************************************************************************************************************************
+        centos7                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+        ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 10. Посмотрите при помощи `ansible-doc` список плагинов для подключения. Выберите подходящий для работы на `control node`.
 
