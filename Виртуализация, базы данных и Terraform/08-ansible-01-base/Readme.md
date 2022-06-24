@@ -9,7 +9,7 @@
 1. Попробуйте запустить playbook на окружении из `test.yml`, зафиксируйте какое значение имеет факт `some_fact` для указанного хоста при выполнении playbook'a.
 
 
-    'root@vagrant:/home/vagrant/ansible/ansible# ansible-playbook site.yml -i inventory/test.yml'
+    `root@vagrant:/home/vagrant/ansible/ansible# ansible-playbook site.yml -i inventory/test.yml`
     
 
     PLAY [Print os facts] **************************************************************************************************
