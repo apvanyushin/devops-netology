@@ -60,10 +60,11 @@ some_fact = 12, это видно в таске "Print fact". 12 потому ч
 3. Воспользуйтесь подготовленным (используется `docker`) или создайте собственное окружение для проведения дальнейших испытаний.
 
 
-    `root@vagrant:/home/vagrant/ansible/ansible# docker ps
-    CONTAINER ID   IMAGE      COMMAND           CREATED          STATUS          PORTS     NAMES
-    867b4b51b2b2   ubuntu     "sleep 6000000"   5 seconds ago    Up 3 seconds              ubuntu
-    59d39c467f5a   centos:7   "sleep 6000000"   52 seconds ago   Up 49 seconds             centos7`
+        root@vagrant:/home/vagrant/ansible/ansible# docker ps
+        CONTAINER ID   IMAGE      COMMAND           CREATED          STATUS          PORTS     NAMES
+        867b4b51b2b2   ubuntu     "sleep 6000000"   5 seconds ago    Up 3 seconds              ubuntu
+        59d39c467f5a   centos:7   "sleep 6000000"   52 seconds ago   Up 49 seconds             centos7`
+
 
 5. Проведите запуск playbook на окружении из `prod.yml`. Зафиксируйте полученные значения `some_fact` для каждого из `managed host`.
 
