@@ -139,6 +139,7 @@ some_fact = 12, это видно в таске "Print fact". 12 потому ч
 
 
     `root@vagrant:/home/vagrant/ansible/ansible# ansible-playbook site.yml -i inventory/prod.yml --ask-vault-pass`
+        
         Vault password:
 
         PLAY[Print os facts] ******************************************************************************************************************************************
@@ -169,68 +170,69 @@ some_fact = 12, это видно в таске "Print fact". 12 потому ч
 
 10. Посмотрите при помощи `ansible-doc` список плагинов для подключения. Выберите подходящий для работы на `control node`.
 
-root@vagrant:/home/vagrant/ansible/ansible# ansible-doc -t connection -l | grep control
-community.docker.nsenter       execute on host running controller container
-local                          execute on controller
+        root@vagrant:/home/vagrant/ansible/ansible# ansible-doc -t connection -l | grep control
+        community.docker.nsenter       execute on host running controller container
+        local                          execute on controller
 
 ---
 
 11. В `prod.yml` добавьте новую группу хостов с именем  `local`, в ней разместите localhost с необходимым типом подключения.
 
 
-      GNU nano 4.8                                            prod.yml                                                      ---
-          el:
-            hosts:
-              centos7:
-                ansible_connection: docker
-          deb:
-            hosts:
-              ubuntu:
-                ansible_connection: docker
-          local:
-            hosts:
-              localhost:
-                ansible_connection: local
+          GNU nano 4.8                                            prod.yml                                                      ---
+              el:
+                hosts:
+                  centos7:
+                    ansible_connection: docker
+              deb:
+                hosts:
+                  ubuntu:
+                    ansible_connection: docker
+              local:
+                hosts:
+                  localhost:
+                    ansible_connection: local
 
 12. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь что факты `some_fact` для каждого из хостов определены из верных `group_vars`.
 
 
-    root@vagrant:/home/vagrant/ansible/ansible# ansible-playbook site.yml -i inventory/prod.yml --ask-vault-pass
-    Vault password:
+    `root@vagrant:/home/vagrant/ansible/ansible# ansible-playbook site.yml -i inventory/prod.yml --ask-vault-pass`
     
-    PLAY [Print os facts] **************************************************************************************************
-    
-    TASK [Gathering Facts] *************************************************************************************************
-    ok: [localhost]
-    ok: [ubuntu]
-    ok: [centos7]
-    
-    TASK [Print OS] ********************************************************************************************************
-    ok: [centos7] => {
-        "msg": "CentOS"
-    }
-    ok: [ubuntu] => {
-        "msg": "Ubuntu"
-    }
-    ok: [localhost] => {
-        "msg": "Ubuntu"
-    }
-    
-    TASK [Print fact] ******************************************************************************************************
-    ok: [centos7] => {
-        "msg": "el default fact"
-    }
-    ok: [ubuntu] => {
-        "msg": "deb default fact"
-    }
-    ok: [localhost] => {
-        "msg": "all default fact"
-    }
-    
-    PLAY RECAP *************************************************************************************************************
-    centos7                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-    localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-    ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+        Vault password:
+
+        PLAY [Print os facts] **************************************************************************************************
+
+        TASK [Gathering Facts] *************************************************************************************************
+        ok: [localhost]
+        ok: [ubuntu]
+        ok: [centos7]
+
+        TASK [Print OS] ********************************************************************************************************
+        ok: [centos7] => {
+            "msg": "CentOS"
+        }
+        ok: [ubuntu] => {
+            "msg": "Ubuntu"
+        }
+        ok: [localhost] => {
+            "msg": "Ubuntu"
+        }
+
+        TASK [Print fact] ******************************************************************************************************
+        ok: [centos7] => {
+            "msg": "el default fact"
+        }
+        ok: [ubuntu] => {
+            "msg": "deb default fact"
+        }
+        ok: [localhost] => {
+            "msg": "all default fact"
+        }
+
+        PLAY RECAP *************************************************************************************************************
+        centos7                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+        localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+        ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 13. Заполните `README.md` ответами на вопросы. Сделайте `git push` в ветку `master`. В ответе отправьте ссылку на ваш открытый репозиторий с изменённым `playbook` и заполненным `README.md`.
 
